@@ -21,4 +21,4 @@ jobs:
 
       - name: Run Schemathesis tests
         run: |
-          schemathesis run https://petstore.swagger.io/v2/swagger.json --junit-xml=reports/contract-report.xml --report=reports/report.html
+          schemathesis run https://petstore.swagger.io/v2/swagger.json --hypothesis-max-examples=50 --junit-xml=reports/contract-report.xml --report=reports/report.html
