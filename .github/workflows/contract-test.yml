@@ -22,3 +22,7 @@ jobs:
       - name: Run Schemathesis tests
         run: |
           schemathesis run https://petstore.swagger.io/v2/swagger.json --hypothesis-max-examples=50 --junit-xml=reports/contract-report.xml --report=reports/report.html
+
+      - name: Run Tramatch Recommendation tests
+        run: |
+          schemathesis run https://test-v2.tramatch.com/api/recommendations/v2/openapi.json --hypothesis-max-examples=50 --junit-xml=reports/contract-report.xml --report=reports/report.html
