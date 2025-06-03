@@ -2,7 +2,7 @@ name: Schemathesis Contract Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [ contract-testing ]
   pull_request:
 
 jobs:
