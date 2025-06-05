@@ -21,4 +21,4 @@ jobs:
 
       - name: Run Tramatch Recommendation tests
         run: |
-          pytest -v --junit-xml=reports/contract-report.xml --html=reports/report.html --self-contained-html
+          pytest -v --experimental=openapi-3.1 --junit-xml=reports/contract-report.xml --html=reports/report.html --self-contained-html
