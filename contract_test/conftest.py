@@ -7,7 +7,7 @@ load_dotenv()  # Optional: load variables from a .env file
 
 LOGIN_URL = "https://test-v2.tramatch.com/api/usermgmt/v2/accounts/login"
 
-#@pytest.fixture(scope="session")
+@pytest.fixture(scope="session")
 def auth_token():
     """Fetch auth token once per test session."""
     email = "preciousanthony1997@gmail.com"
@@ -27,8 +27,3 @@ def auth_token():
     if not token:
         raise RuntimeError("Login response did not contain an access token")
     return token
-
-
-
-auth = auth_token()
-print(auth)
