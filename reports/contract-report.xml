@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="2" tests="49" time="860.5120000001043">
+	<testsuite disabled="0" errors="0" failures="2" name="schemathesis" skipped="0" tests="49" time="860.5120000001043" hostname="UyahTee">
+		<testcase name="POST /api/usermgmt/v2/accounts/" time="16.766000"/>
+		<testcase name="PUT /api/usermgmt/v2/accounts/activate" time="14.187000"/>
+		<testcase name="POST /api/usermgmt/v2/accounts/bulk/profiles" time="15.797000"/>
+		<testcase name="POST /api/usermgmt/v2/accounts/bulk/status" time="15.734000"/>
+		<testcase name="POST /api/usermgmt/v2/accounts/confirm" time="16.250000"/>
+		<testcase name="POST /api/usermgmt/v2/accounts/deactivate" time="17.657000"/>
+		<testcase name="PUT /api/usermgmt/v2/accounts/email" time="5.062000">
+			<failure type="failure" message="1. Test Case ID: t0XROS
+
+- Server error
+
+[500] Internal Server Error:
+
+    `{&quot;detail&quot;:&quot;Something went wrong&quot;}`
+
+Reproduce with: 
+
+    curl -X PUT -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -H 'Cookie: [Filtered]' -d '{&quot;email&quot;: &quot;&quot;, &quot;token&quot;: &quot;&quot;}' https://test-v2.tramatch.com/api/usermgmt/v2/accounts/email"/>
+		</testcase>
+		<testcase name="POST /api/usermgmt/v2/accounts/forgot-password" time="18.062000"/>
+		<testcase name="POST /api/usermgmt/v2/accounts/initiate-email-change" time="15.922000"/>
+		<testcase name="POST /api/usermgmt/v2/accounts/initiate-username-change" time="16.797000"/>
+		<testcase name="PUT /api/usermgmt/v2/accounts/location" time="15.641000"/>
+		<testcase name="POST /api/usermgmt/v2/accounts/login" time="15.047000"/>
+		<testcase name="DELETE /api/usermgmt/v2/accounts/logout" time="13.531000"/>
+		<testcase name="POST /api/usermgmt/v2/accounts/oauth/callback" time="17.469000"/>
+		<testcase name="POST /api/usermgmt/v2/accounts/oauth/update" time="17.203000"/>
+		<testcase name="PUT /api/usermgmt/v2/accounts/password" time="16.797000"/>
+		<testcase name="GET /api/usermgmt/v2/accounts/public/{user_id}" time="14.531000"/>
+		<testcase name="POST /api/usermgmt/v2/accounts/refresh-token" time="14.047000"/>
+		<testcase name="PUT /api/usermgmt/v2/accounts/reset-password" time="16.828000"/>
+		<testcase name="POST /api/usermgmt/v2/accounts/send-account-verification" time="13.656000"/>
+		<testcase name="GET /api/usermgmt/v2/accounts/user/info" time="14.047000"/>
+		<testcase name="PUT /api/usermgmt/v2/accounts/user/{user_id}" time="15.718000"/>
+		<testcase name="PUT /api/usermgmt/v2/accounts/username" time="16.859000"/>
+		<testcase name="POST /api/usermgmt/v2/accounts/verify-username" time="21.907000">
+			<failure type="failure" message="1. Test Case ID: Rcdlo4
+
+- Server error
+
+[500] Internal Server Error:
+
+    `{&quot;detail&quot;:&quot;An error occurred while checking username&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -H 'Cookie: [Filtered]' -d '{&quot;username&quot;: &quot;\u0000&quot;}' https://test-v2.tramatch.com/api/usermgmt/v2/accounts/verify-username"/>
+		</testcase>
+		<testcase name="POST /api/usermgmt/v2/accounts/{user_id}/initiate-account-deletion" time="14.750000"/>
+		<testcase name="POST /api/usermgmt/v2/admin/logs/visits/aggregations" time="17.078000"/>
+		<testcase name="POST /api/usermgmt/v2/admin/logs/visits/search" time="16.219000"/>
+		<testcase name="POST /api/usermgmt/v2/admin/roles" time="15.235000"/>
+		<testcase name="POST /api/usermgmt/v2/admin/users" time="17.031000"/>
+		<testcase name="POST /api/usermgmt/v2/admin/users/aggregations" time="18.594000"/>
+		<testcase name="POST /api/usermgmt/v2/admin/users/search" time="16.093000"/>
+		<testcase name="GET /api/usermgmt/v2/admin/users/settings" time="14.109000"/>
+		<testcase name="GET /api/usermgmt/v2/admin/users/{user_id}" time="15.000000"/>
+		<testcase name="DELETE /api/usermgmt/v2/admin/users/{user_id}" time="15.406000"/>
+		<testcase name="PUT /api/usermgmt/v2/admin/users/{user_id}/confirm" time="15.578000"/>
+		<testcase name="PUT /api/usermgmt/v2/admin/users/{user_id}/deactivate" time="16.203000"/>
+		<testcase name="PUT /api/usermgmt/v2/admin/users/{user_id}/email" time="17.719000"/>
+		<testcase name="PUT /api/usermgmt/v2/admin/users/{user_id}/reactivate" time="15.687000"/>
+		<testcase name="PUT /api/usermgmt/v2/admin/users/{user_id}/role" time="15.921000"/>
+		<testcase name="PUT /api/usermgmt/v2/admin/users/{user_id}/suspend" time="15.141000"/>
+		<testcase name="POST /api/usermgmt/v2/devices" time="17.047000"/>
+		<testcase name="POST /api/usermgmt/v2/devices/builds" time="19.296000"/>
+		<testcase name="GET /api/usermgmt/v2/devices/builds/latest/{platform}" time="15.110000"/>
+		<testcase name="POST /api/usermgmt/v2/devices/builds/search" time="20.656000"/>
+		<testcase name="GET /api/usermgmt/v2/devices/builds/{build_number}" time="16.750000"/>
+		<testcase name="PUT /api/usermgmt/v2/devices/builds/{build_number}" time="15.375000"/>
+		<testcase name="GET /settings" time="90.125000"/>
+		<testcase name="PUT /settings" time="16.734000"/>
+		<testcase name="POST /settings" time="18.140000"/>
+	</testsuite>
+</testsuites>
