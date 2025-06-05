@@ -21,4 +21,4 @@ jobs:
 
       - name: Run Tramatch Recommendation tests
         run: |
-          pytest -v --junit-xml=reports/contract-report.xml --html=reports/report.html --self-contained-html
+          schemathesis run https://test-v2.tramatch.com/api/usermgmt/v2/docs/doc.json --experimental=openapi-3.1 --hypothesis-max-examples=50 --junit-xml=reports/contract-report.xml --report=reports/report.html
