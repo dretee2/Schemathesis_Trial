@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  test 1:
+  test1:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -27,7 +27,7 @@ jobs:
         run: |
           schemathesis run https://test-v2.tramatch.com/api/recommendations/v2/openapi.json --experimental=openapi-3.1 --hypothesis-max-examples=50 --junit-xml=reports/contract-report.xml --report=reports/report.html
 
-  test 2 :
+  test2 :
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
