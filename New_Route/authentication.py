@@ -1,25 +1,28 @@
 # authentication.py
-
+import pytest
 import requests
 import os
 
+LOGIN_URL = "https://test-v2.tramatch.com/api/usermgmt/v2/accounts/login"
+
+@pytest.fixture(scope="session")
 def get_access_token():
-    """Authenticate and return the Bearer token for the API."""
-    url = "https://your-auth-endpoint.com/login"  # Replace with your actual auth endpoint
-    payload = {
-        "email": "preciousanthony1997@gmail.com",
-        "password": "Adinlewa150497"
-    }
+        """Fetch auth token once per test session."""
+        email = "preciousanthony1997@gmail.com"
+        password = "Adinlewa150497"
 
-    """os.getenv("API_EMAIL")
-    os.getenv("API_PASSWORD")"""
+        """email = os.getenv("API_EMAIL")
+        password = os.getenv("API_PASSWORD")"""
 
-    headers = {
-        "Content-Type": "application/json"
-    }
+        if not email or not password:
+            raise ValueError("Missing environment variables: API_EMAIL or API_PASSWORD")
 
-    response = requests.post(url, json=payload, headers=headers)
-    response.raise_for_status()
+        response = requests.post(LOGIN_URL, json={"email": email, "password": password})
 
-    # Modify this line according to how the token is returned
-    return response.json()["data"]["access_token"]
+        if response.status_code != 200:
+            raise RuntimeError(f"Failed to log in: {response.status_code} - {response.text}")
+
+        token = response.json().get("access_token")
+        if not token:
+            raise RuntimeError("Login response did not contain an access token")
+        return token
