@@ -4,20 +4,19 @@ on:
   push:
     branches: [ contract-testing ]
   pull_request:
-  schedule:
-    - cron: '0 1 * * *'  # Runs every day at 1 AM UTC
+
 
 jobs:
   run-contract-tests:
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         testfile:
-          - tests/test_user_management.py
-          - tests/test_recommendations.py
-          - tests/test_chat.py
-          - tests/test_alerts.py
+          - test_Services/test_userManagement.py
+          - test_Services/test_recommendation.py
+          - test_Services/test_chats.py
+          - test_Services/test_alert.py
 
     steps:
       - name: Checkout repository
@@ -44,17 +43,3 @@ jobs:
             --html=reports/report-${{ matrix.testfile }}.html \
             --self-contained-html
 
-      # Optional: Email report
-      - name: Email HTML Report
-        if: always()
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          username: ${{ secrets.SMTP_USERNAME }}
-          password: ${{ secrets.SMTP_PASSWORD }}
-          subject: Contract Test Report for ${{ matrix.testfile }}
-          body: "Attached is the latest contract test report."
-          to: uyahanthony2@gmial.com
-          from: Contract Tests <qa-team@example.com>
-          attachments: reports/report-${{ matrix.testfile }}.html
