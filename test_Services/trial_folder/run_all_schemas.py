@@ -1,7 +1,7 @@
 # run_all_schemas.py
 import subprocess
-from schemas import SCHEMA_MAP
-from authentication import get_access_token
+from test_Services.trial_folder.schemas import SCHEMA_MAP
+from test_Services.authentication import get_access_token
 import os
 
 token = get_access_token()
