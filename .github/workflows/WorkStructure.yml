@@ -35,15 +35,18 @@ jobs:
           echo "API_EMAIL=${{ secrets.API_EMAIL }}" >> $GITHUB_ENV
           echo "API_PASSWORD=${{ secrets.API_PASSWORD }}" >> $GITHUB_ENV
 
-      - name: Run tests with pytest
+      - name: Run tests For alerts
         run: |
-          mkdir -p reports
-         schemathesis run \
-        -H "Authorization: Bearer $TOKEN" \
-          --checks all \
-          --workers 4 \
-          --junit-xml reports/recommendations-report.xml \
-          --report reports/recommendations-report.html \
-          --report reports/recommendations-report.json \
-          https://test-v2.tramatch.com/api/recommendations/v2/openapi.json
+          python test_alerts.py
 
+      - name: Run tests for chats
+        run: |
+          python test_chats.py
+          
+      - name: Run tests For recommendations
+        run: |
+          python test_recommendation.py
+
+      - name: Run tests for User Management
+        run: |
+          python test_userManagement.py

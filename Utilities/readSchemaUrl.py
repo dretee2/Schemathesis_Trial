@@ -1,29 +1,54 @@
 import configparser
-import ast
+import json
+
+configs = configparser.RawConfigParser()
+configs.read(r"C:\Users\BAB AL SAFA\PycharmProjects\Schemathesis_Project\Configurations\config.ini")
 
 
 class ReadSchemaProperties:
-    def __init__(self, file_path=r"C:\Users\BAB AL SAFA\PycharmProjects\Schemathesis_Project\configurations\config.ini"):
-        self.config = configparser.ConfigParser()
-        self.config.read(file_path)
-        self.schema_section = "common Schema data"
 
-    def _get_schema_dict(self, key):
-        if self.schema_section not in self.config or key not in self.config[self.schema_section]:
-            raise KeyError(f"Schema key '{key}' not found in section '{self.schema_section}'")
+    @staticmethod
+    def get_alerts_schema():
         try:
-            return ast.literal_eval(self.config[self.schema_section][key])
-        except Exception as e:
-            raise ValueError(f"Error parsing schema entry '{key}': {e}")
+            schema_string = configs.get("common Schema data", "Alerts_Schema_Details")
+            return json.loads(schema_string)
+        except configparser.NoSectionError:
+            print("Error: 'common Schema data' section not found in config.ini")
+            return {}
+        except configparser.NoOptionError:
+            print("Error: 'Alerts_Schema_Details' option not found.")
+            return {}
 
-    def get_alerts_schema(self):
-        return self._get_schema_dict("Alerts_Schema_Details")
+    @staticmethod
+    def get_user_management_schema():
+        try:
+            schema_string = configs.get("common Schema data", "User_Management_Schema_Details")
+            return json.loads(schema_string)
+        except configparser.NoSectionError:
+            print("Error: 'common Schema data' section not found in config.ini")
+            return {}
+        except configparser.NoOptionError:
+            print("Error: 'User_Management_Schema_Details' option not found.")
 
-    def get_user_management_schema(self):
-        return self._get_schema_dict("User_Management_Schema_Details")
+    @staticmethod
+    def get_recommendation_schema():
+        try:
+            schema_string = configs.get("common Schema data", "Recommendation_Schema_Details")
+            return json.loads(schema_string)
+        except configparser.NoSectionError:
+            print("Error: 'common Schema data' section not found in config.ini")
+            return {}
+        except configparser.NoOptionError:
+            print("Error: 'Recommendation_Schema_Details' option not found.")
 
-    def get_recommendation_schema(self):
-        return self._get_schema_dict("Recommendation_Schema_Details")
+    @staticmethod
+    def get_chats_schema():
+        try:
+            schema_string = configs.get("common Schema data", "Chats_Schema_Details")
+            return json.loads(schema_string)
+        except configparser.NoSectionError:
+            print("Error: 'common Schema data' section not found in config.ini")
+            return {}
+        except configparser.NoOptionError:
+            print("Error: 'Chats_Schema_Details' option not found.")
 
-    def get_chats_schema(self):
-        return self._get_schema_dict("Chats_Schema_Details")
