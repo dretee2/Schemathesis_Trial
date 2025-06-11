@@ -10,10 +10,8 @@ LOGIN_URL = "https://test-v2.tramatch.com/api/usermgmt/v2/accounts/login"
 @pytest.fixture(scope="session")
 def auth_token():
     """Fetch auth token once per test session."""
-    email = "preciousanthony1997@gmail.com"
-    #os.getenv("API_EMAIL")
-    password = "Adinlewa150497"
-    #os.getenv("API_PASSWORD")
+    email = os.getenv("API_EMAIL")
+    password = os.getenv("API_PASSWORD")
 
     if not email or not password:
         raise ValueError("Missing environment variables: API_EMAIL or API_PASSWORD")
