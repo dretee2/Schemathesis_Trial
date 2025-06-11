@@ -14,9 +14,6 @@ for name, url in SCHEMA_MAP.items():
         "-H", f"Authorization: Bearer {token}",
         "--checks", "all",
         "--workers", "4",
-        "--junit-xml", f"reports/{name}-report.xml",
-        "--report", f"reports/{name}-report.html",
-        "--report", f"reports/{name}-report.json",
         url,
     ]
     subprocess.run(cmd, check=True)
