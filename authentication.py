@@ -5,7 +5,7 @@ import os
 
 LOGIN_URL = "https://test-v2.tramatch.com/api/usermgmt/v2/accounts/login"
 
-@pytest.fixture(scope="session")
+
 def get_access_token():
         """Fetch auth token once per test session."""
         email = "preciousanthony1997@gmail.com"
