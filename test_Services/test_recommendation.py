@@ -1,6 +1,6 @@
 import schemathesis
 
-schema = schemathesis.from_uri("https://test-v2.tramatch.com/api/recommendations/v2/openapi.json")
+schema = schemathesis.loaders.from_uri("https://test-v2.tramatch.com/api/recommendations/v2/openapi.json")
 
 @schema.parametrize()
 def test_recommendations_api(case, auth_token):

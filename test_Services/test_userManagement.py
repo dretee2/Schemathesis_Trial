@@ -1,6 +1,6 @@
 import schemathesis
 
-schema = schemathesis.from_uri("https://test-v2.tramatch.com/api/usermgmt/v2/docs/doc.json")
+schema = schemathesis.loaders.from_uri("https://test-v2.tramatch.com/api/usermgmt/v2/docs/doc.json")
 
 # to run   schemathesis run https://test-v2.tramatch.com/api/usermgmt/v2/docs/doc.json --experimental=openapi-3.1 --hypothesis-max-examples=50 --junit-xml=reports/contract-report.xml --report=reports/report.html
 @schema.parametrize()

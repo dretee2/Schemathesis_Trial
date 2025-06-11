@@ -1,4 +1,4 @@
-schemathesis>=3.22.0
+schemathesis>=3.24.2
 pytest
 requests~=2.32.3
 pytest-html
