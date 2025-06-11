@@ -35,4 +35,4 @@ jobs:
           echo "API_PASSWORD=${{ secrets.API_PASSWORD }}" >> $GITHUB_ENV
 
       - name: Run contract test - ${{ matrix.testfile }}
-        run: python ${{ matrix.testfile }}
+        run:  python ${{ matrix.testfile }}
