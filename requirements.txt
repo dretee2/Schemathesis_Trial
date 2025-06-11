@@ -1,4 +1,4 @@
-schemathesis>=3.22.0
+schemathesis>=4.0.0
 pytest~=8.4.0
 requests~=2.32.3
 dotenv~=0.9.9

@@ -1,7 +1,7 @@
 import schemathesis
-from schemathesis import from_uri
 
-schema = from_uri("https://test-v2.tramatch.com/api/chats/v2/openapi.json")
+
+schema = schemathesis.openapi.from_url("https://test-v2.tramatch.com/api/chats/v2/openapi.json")
 
 @schema.parametrize()
 def test_chats_api(case, auth_token):
