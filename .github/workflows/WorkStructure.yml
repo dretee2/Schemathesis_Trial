@@ -38,8 +38,12 @@ jobs:
       - name: Run tests with pytest
         run: |
           mkdir -p reports
-          pytest -v ${{ matrix.testfile }} \
-            --junit-xml=reports/contract-report-${{ matrix.testfile }}.xml \
-            --html=reports/report-${{ matrix.testfile }}.html \
-            --self-contained-html
+         schemathesis run \
+        -H "Authorization: Bearer $TOKEN" \
+          --checks all \
+          --workers 4 \
+          --junit-xml reports/recommendations-report.xml \
+          --report reports/recommendations-report.html \
+          --report reports/recommendations-report.json \
+          https://test-v2.tramatch.com/api/recommendations/v2/openapi.json
 

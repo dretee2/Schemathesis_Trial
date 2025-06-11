@@ -1,11 +1,21 @@
-import schemathesis
 
+import subprocess
 
-schema = schemathesis.openapi.from_url("https://test-v2.tramatch.com/api/recommendations/v2/openapi.json")
+from Utilities.readSchemaUrl import ReadSchemaProperties
+from authentication import get_access_token
+import os
 
-@schema.parametrize()
-def test_recommendations_api(case, auth_token):
-    case.base_url = "https://test-v2.tramatch.com/api"
-    case.headers["Authorization"] = f"Bearer {auth_token}"
-    response = case.call()
-    case.validate_response(response)
+token = get_access_token()
+os.makedirs("reports", exist_ok=True)
+
+alerts_schema= ReadSchemaProperties.get_recommendation_schema()
+for name, url in alerts_schema.items():
+    print(f"Running Schemathesis for schema: {name}")
+    cmd = [
+            "schemathesis", "run",
+            "-H", f"Authorization: Bearer {token}",
+            "--checks", "all",
+            "--workers", "4",
+            url,
+        ]
+    subprocess.run(cmd, check=True)

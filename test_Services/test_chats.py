@@ -1,11 +1,20 @@
-import schemathesis
+import subprocess
 
+from Utilities.readSchemaUrl import ReadSchemaProperties
+from authentication import get_access_token
+import os
 
-schema = schemathesis.openapi.from_url("https://test-v2.tramatch.com/api/chats/v2/openapi.json")
+token = get_access_token()
+os.makedirs("reports", exist_ok=True)
 
-@schema.parametrize()
-def test_chats_api(case, auth_token):
-    case.headers["Authorization"] = f"Bearer {auth_token}"
-    case.base_url = "https://test-v2.tramatch.com/api"
-    response = case.call()
-    case.validate_response(response)
+Chats_schema= ReadSchemaProperties.get_chats_schema()
+for name, url in Chats_schema.items():
+    print(f"Running Schemathesis for schema: {name}")
+    cmd = [
+            "schemathesis", "run",
+            "-H", f"Authorization: Bearer {token}",
+            "--checks", "all",
+            "--workers", "4",
+            url,
+        ]
+    subprocess.run(cmd, check=True)
